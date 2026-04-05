@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Bebas_Neue, Geist, Geist_Mono } from "next/font/google";
+import { Suspense } from "react";
 import "./globals.css";
 import Script from "next/script";
 import { Providers } from "@/components/providers";
@@ -41,7 +42,9 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col relative">
         <Providers>
-          <GlobalPreloader />
+          <Suspense fallback={null}>
+            <GlobalPreloader />
+          </Suspense>
           <CustomCursor />
           {children}
         </Providers>
