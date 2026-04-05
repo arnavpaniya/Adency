@@ -4,42 +4,42 @@ import { useEffect, useRef } from "react";
 
 const PORTFOLIO_ITEMS: Array<{ src: string; title: string; category: string; metric: string; description?: string }> = [
   { 
-    src: "/assets/videos/video1.mp4", 
+    src: "/assets/videos/compressed_video1.mp4", 
     title: "Eco-Wear Launch", 
     category: "Brand Promo", 
     metric: "+140% ROAS",
     description: "A high-converting UGC video crafted to showcase the brand in a natural and engaging way. Designed for social platforms with fast pacing, clean edits, and strong visual storytelling."
   },
   { 
-    src: "/assets/videos/video2.mp4", 
+    src: "/assets/videos/compressed_video2.mp4", 
     title: "Urban Steps App", 
     category: "UGC Campaign", 
     metric: "2.1M Views",
     description: "A relatable lifestyle UGC video designed to connect with the audience authentically. Built for social media with natural storytelling, subtle edits, and a focus on real-world usage."
   },
   { 
-    src: "/assets/videos/video3.mp4", 
+    src: "/assets/videos/compressed_video3.mp4", 
     title: "Glow Skincare", 
     category: "Social Content", 
     metric: "-40% CPA",
     description: "A visually engaging video crafted to capture attention within the first few seconds. Designed for social platforms with sharp edits, smooth transitions, and a focus on keeping viewers hooked."
   },
   { 
-    src: "/assets/videos/video4.mp4", 
+    src: "/assets/videos/compressed_video4.mp4", 
     title: "FitTech Watch", 
     category: "Product Launch", 
     metric: "15k Clicks",
     description: "A clean and engaging video designed to showcase the brand in a natural and appealing way. Optimized for social platforms with smooth pacing, refined edits, and a focus on visual clarity."
   },
   { 
-    src: "/assets/videos/video5.mp4", 
+    src: "/assets/videos/compressed_video5.mp4", 
     title: "Brew Coffee Co.", 
     category: "UGC Skit", 
     metric: "Viral 4M+",
     description: "A premium-quality video crafted to elevate the brand’s visual presence. Designed for modern platforms with polished edits, smooth transitions, and a refined storytelling approach."
   },
   { 
-    src: "/assets/videos/video6.mp4", 
+    src: "/assets/videos/compressed_video6.mp4", 
     title: "Minimalist Desk", 
     category: "Aesthetic B-Roll", 
     metric: "+85% Conv.",
