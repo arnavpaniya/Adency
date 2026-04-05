@@ -39,3 +39,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# large video assets (exceed GitHub 100MB limit)
+public/assests/videos/
