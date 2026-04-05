@@ -1,12 +1,13 @@
 "use client";
 
 import Image from "next/image";
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Portfolio from "../components/portfolio";
 import CameraShowcase from "../components/camera-showcase";
 import Testimonials from "../components/testimonials";
 import { Navbar } from "../components/navbar";
+import HeroNavbar from "../components/hero-navbar";
 import { Footer } from "../components/footer";
 import { Plans } from "../components/plans";
 import { BookingModal } from "../components/booking-modal";
@@ -16,11 +17,23 @@ import Link from "next/link";
 
 export default function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [showHeroNav, setShowHeroNav] = useState(true);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowHeroNav(window.scrollY < 120);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <>
-
-      <Navbar onOpenModal={() => setIsModalOpen(true)} />
+      <AnimatePresence>
+        {!showHeroNav && (
+          <Navbar key="site-nav" onOpenModal={() => setIsModalOpen(true)} />
+        )}
+      </AnimatePresence>
 
       <main className="bg-[#fdfaf6]">
         {/* ── Hero Section ── */}
@@ -31,6 +44,12 @@ export default function Home() {
           </div>
           <div className="decorative-icon bottom-[10%] left-[5%] opacity-[0.08] md:opacity-15 scale-[1.2] md:scale-[2]">
             <Image src="/assets/icons/icon2.png" alt="" width={500} height={500} />
+          </div>
+
+          <div className="absolute top-10 left-10 z-[100]">
+             <Link href="/" className="transition-all duration-300 hover:scale-105 active:scale-95">
+                <Image src="/assets/logo.png" alt="ADENCY" width={90} height={90} className="drop-shadow-xl" />
+             </Link>
           </div>
 
           {/* Background Image with Zoom animation */}

@@ -17,7 +17,7 @@ export function Navbar({ onOpenModal, variant = "default" }: NavbarProps) {
   const [navVisible, setNavVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
 
-  const isHome = pathname === "/";
+  const isHome = pathname === "/" || pathname === null || pathname === "";
   const shouldBeGlass = !isHome || scrolled;
   const glassEffect = !isHome || scrolled;
 
@@ -63,16 +63,20 @@ export function Navbar({ onOpenModal, variant = "default" }: NavbarProps) {
           <nav className="hidden md:flex gap-8 text-[0.9rem] font-bold uppercase tracking-widest items-center">
             <Link 
               href="/plans" 
-              className={`no-underline hover:text-orange-500 transition-all duration-300 drop-shadow-sm ${
-                shouldBeGlass ? "text-[#1a1512]" : "text-white"
+              className={`no-underline hover:text-orange-500 transition-all duration-300 ${
+                shouldBeGlass 
+                ? "text-[#1a1512]" 
+                : "text-white font-black text-lg drop-shadow-[0_2px_8px_rgba(0,0,0,0.5)]"
               }`}
             >
               Plans
             </Link>
             <a 
               href="/#portfolio" 
-              className={`no-underline hover:text-orange-500 transition-all duration-300 drop-shadow-sm ${
-                shouldBeGlass ? "text-[#1a1512]" : "text-white"
+              className={`no-underline hover:text-orange-500 transition-all duration-300 ${
+                shouldBeGlass 
+                ? "text-[#1a1512]" 
+                : "text-white font-black text-lg drop-shadow-[0_2px_8px_rgba(0,0,0,0.5)]"
               }`}
             >
               Portfolio
