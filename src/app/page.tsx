@@ -6,6 +6,7 @@ import { useState, useEffect, useCallback } from "react";
 import Portfolio from "../components/portfolio";
 import Testimonials from "../components/testimonials";
 import Preloader from "../components/preloader";
+import HowWeWorkCTA from "../components/how-we-work-cta";
 
 export default function Home() {
   const [scrolled, setScrolled] = useState(false);
@@ -88,7 +89,7 @@ export default function Home() {
           </p>
 
           <div className="hero-actions">
-            <a href="#plans" className="hero-button hero-button-primary">
+            <a href="/plans" className="hero-button hero-button-primary">
               Explore Plans
             </a>
             <a href="#contact" className="hero-button hero-button-secondary">
@@ -105,6 +106,9 @@ export default function Home() {
 
       {/* ── Testimonials ── */}
       <Testimonials />
+
+      {/* ── How We Work CTA ── */}
+      <HowWeWorkCTA />
 
       {/* ── Footer ── */}
       {/* ── Footer (Inlined) ── */}
