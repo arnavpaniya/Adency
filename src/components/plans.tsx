@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { CheckCircle2 } from "lucide-react";
+import Link from "next/link";
 
 type PlansProps = {
   onOpenModal: () => void;
@@ -81,12 +82,12 @@ export function Plans({ onOpenModal }: PlansProps) {
               </li>
             </ul>
 
-            <button 
-              onClick={onOpenModal}
-              className="w-full py-4 rounded-xl font-bold text-[#1a1512] border-2 border-[#1a1512] hover:bg-[#1a1512] hover:text-white transition-colors"
+            <Link 
+              href="/plans"
+              className="w-full py-4 rounded-xl font-bold text-[#1a1512] border-2 border-[#1a1512] hover:bg-[#1a1512] hover:text-white transition-colors text-center"
             >
               Select Basic
-            </button>
+            </Link>
           </motion.div>
 
           {/* Premium Plan */}
@@ -133,12 +134,12 @@ export function Plans({ onOpenModal }: PlansProps) {
               </li>
             </ul>
 
-            <button 
-              onClick={onOpenModal}
-              className="w-full py-4 rounded-xl font-bold text-white bg-orange-500 hover:bg-orange-400 transition-colors shadow-lg shadow-orange-500/20"
+            <Link 
+              href="/plans"
+              className="w-full py-4 rounded-xl font-bold text-white bg-orange-500 hover:bg-orange-400 transition-colors shadow-lg shadow-orange-500/20 text-center"
             >
               Select Premium
-            </button>
+            </Link>
           </motion.div>
         </div>
 

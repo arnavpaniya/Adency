@@ -10,7 +10,7 @@ export default function Preloader({ onComplete }: { onComplete: () => void }) {
   useEffect(() => {
     let raf: number;
     let start: number | null = null;
-    const duration = 2800; // 2.8s total load
+    const duration = 1500; // 1.5s total load for snappier feel
 
     const tick = (ts: number) => {
       if (!start) start = ts;
@@ -35,7 +35,7 @@ export default function Preloader({ onComplete }: { onComplete: () => void }) {
   // Handle phase transitions
   useEffect(() => {
     if (phase === "reveal") {
-      const t = setTimeout(() => setPhase("exit"), 600);
+      const t = setTimeout(() => setPhase("exit"), 400);
       return () => clearTimeout(t);
     }
     if (phase === "exit") {
@@ -60,7 +60,7 @@ export default function Preloader({ onComplete }: { onComplete: () => void }) {
       {/* Center content */}
       <div className="pl__center">
         {/* Brand text */}
-        <h1 className="pl__brand">
+        <h1 className="pl__brand" style={{ color: "var(--text-dark)" }}>
           {letters.map((char, i) => (
             <span
               key={i}
@@ -73,22 +73,29 @@ export default function Preloader({ onComplete }: { onComplete: () => void }) {
         </h1>
 
         {/* Tagline */}
-        <p className="pl__tagline">VIDEO PRODUCTION STUDIO</p>
+        <p className="pl__tagline" style={{ color: "var(--accent)", fontWeight: 800 }}>VIDEO PRODUCTION STUDIO</p>
 
         {/* Progress bar */}
-        <div className="pl__track">
+        <div className="pl__track" style={{ background: "rgba(240, 112, 32, 0.1)" }}>
           <div
             className="pl__bar"
-            style={{ transform: `scaleX(${progress / 100})` }}
+            style={{ 
+              transform: `scaleX(${progress / 100})`,
+              background: "var(--accent)"
+            }}
           />
           <div
             className="pl__glow"
-            style={{ left: `${progress}%` }}
+            style={{ 
+              left: `${progress}%`,
+              background: "var(--accent)",
+              boxShadow: "0 0 20px var(--accent)"
+            }}
           />
         </div>
 
         {/* Percentage */}
-        <span className="pl__pct">{progress}%</span>
+        <span className="pl__pct" style={{ color: "var(--text-dark)", fontWeight: 700 }}>{progress}%</span>
       </div>
 
       {/* Lens flare */}
