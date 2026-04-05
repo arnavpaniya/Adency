@@ -2,48 +2,48 @@
 
 import { useEffect, useRef, useState } from "react";
 
-const PORTFOLIO_ITEMS: Array<{ src: string; title: string; category: string; metric: string; description?: string }> = [
+const PORTFOLIO_ITEMS = [
   { 
-    src: "/assets/videos/compressed_video1.mp4", 
+    src: "https://res.cloudinary.com/dzmbj6q4j/video/upload/q_auto,f_auto/compressed_video1_fl8abq.mp4", 
     title: "Eco-Wear Launch", 
     category: "Brand Promo", 
     metric: "+140% ROAS",
-    description: "A high-converting UGC video crafted to showcase the brand in a natural and engaging way. Designed for social platforms with fast pacing, clean edits, and strong visual storytelling."
+    description: "A high-converting UGC video crafted to showcase the brand in a natural and engaging way."
   },
   { 
-    src: "/assets/videos/compressed_video2.mp4", 
+    src: "https://res.cloudinary.com/dzmbj6q4j/video/upload/q_auto,f_auto/compressed_video2_jy8ox8.mp4", 
     title: "Urban Steps App", 
     category: "UGC Campaign", 
     metric: "2.1M Views",
-    description: "A relatable lifestyle UGC video designed to connect with the audience authentically. Built for social media with natural storytelling, subtle edits, and a focus on real-world usage."
+    description: "A relatable lifestyle UGC video designed to connect with the audience authentically."
   },
   { 
-    src: "/assets/videos/compressed_video3.mp4", 
+    src: "https://res.cloudinary.com/dzmbj6q4j/video/upload/q_auto,f_auto/compressed_video3_fjm5wo.mp4", 
     title: "Glow Skincare", 
     category: "Social Content", 
     metric: "-40% CPA",
-    description: "A visually engaging video crafted to capture attention within the first few seconds. Designed for social platforms with sharp edits, smooth transitions, and a focus on keeping viewers hooked."
+    description: "A visually engaging video crafted to capture attention quickly."
   },
   { 
-    src: "/assets/videos/compressed_video4.mp4", 
+    src: "https://res.cloudinary.com/dzmbj6q4j/video/upload/q_auto,f_auto/compressed_video4_mchd2t.mp4", 
     title: "FitTech Watch", 
     category: "Product Launch", 
     metric: "15k Clicks",
-    description: "A clean and engaging video designed to showcase the brand in a natural and appealing way. Optimized for social platforms with smooth pacing, refined edits, and a focus on visual clarity."
+    description: "A clean and engaging product-focused video."
   },
   { 
-    src: "/assets/videos/compressed_video5.mp4", 
+    src: "https://res.cloudinary.com/dzmbj6q4j/video/upload/q_auto,f_auto/compressed_video5_juag3n.mp4", 
     title: "Brew Coffee Co.", 
     category: "UGC Skit", 
     metric: "Viral 4M+",
-    description: "A premium-quality video crafted to elevate the brand’s visual presence. Designed for modern platforms with polished edits, smooth transitions, and a refined storytelling approach."
+    description: "A premium-quality video crafted to elevate brand visuals."
   },
   { 
-    src: "/assets/videos/compressed_video6.mp4", 
+    src: "https://res.cloudinary.com/dzmbj6q4j/video/upload/q_auto,f_auto/compressed_video6_gw8csy.mp4", 
     title: "Minimalist Desk", 
     category: "Aesthetic B-Roll", 
     metric: "+85% Conv.",
-    description: "A content-driven UGC video designed to communicate the message clearly and effectively. Optimized for social platforms with natural delivery, clean edits, and a focus on audience engagement."
+    description: "A content-driven UGC video with clean storytelling."
   },
 ];
 
@@ -58,7 +58,7 @@ export default function Portfolio() {
           const video = entry.target as HTMLVideoElement;
 
           if (entry.isIntersecting) {
-            video.muted = true; // ensure autoplay works
+            video.muted = true;
             video.play().catch(() => {});
           } else {
             video.pause();
@@ -97,30 +97,30 @@ export default function Portfolio() {
             >
               <div className={`portfolio-card-inner ${flippedIndex === idx ? "flipped" : ""}`}>
                 
-                {/* Front Side: Video */}
+                {/* Front Side */}
                 <div className="portfolio-card-front">
                   <video
-                    src={item.src}
+                    key={item.src}
                     className="portfolio-video"
-                    loop
-                    muted
-                    playsInline
                     autoPlay
+                    muted
+                    loop
+                    playsInline
                     preload="auto"
-                  />
+                    onLoadedData={(e) => e.currentTarget.play()}
+                  >
+                    <source src={item.src} type="video/mp4" />
+                  </video>
                 </div>
                 
-                {/* Back Side: Details */}
+                {/* Back Side */}
                 <div className="portfolio-card-back">
                   <div className="pvd-content">
                     <p className="pvd-category">{item.category}</p>
                     <h3 className="pvd-title">{item.title}</h3>
-                    {item.description && (
-                      <p className="pvd-description">{item.description}</p>
-                    )}
+                    <p className="pvd-description">{item.description}</p>
                     <div className="pvd-metric">
-                      <span className="pvd-metric-bolt">⚡</span>
-                      {item.metric}
+                      ⚡ {item.metric}
                     </div>
                   </div>
                 </div>
