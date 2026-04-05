@@ -75,8 +75,7 @@ export default function PlansPage() {
       {/* ── Nav ── */}
       <header className="plans-nav">
         <Link href="/" className="plans-nav-brand">
-          <Image src="/assests/logo.png" alt="" width={26} height={26} className="plans-nav-icon" />
-          <span className="plans-nav-text">ADENCY</span>
+          <Image src="/assests/logo1.png" alt="Adency Logo" width={100} height={32} className="plans-nav-logo-h" priority />
         </Link>
         <Link href="/" className="plans-nav-back">← Back to Home</Link>
       </header>

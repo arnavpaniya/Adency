@@ -54,8 +54,7 @@ Looking forward to working with you!`;
       {/* Nav */}
       <header className="order-nav">
         <Link href="/" className="order-nav-brand">
-          <Image src="/assests/logo.png" alt="" width={26} height={26} className="order-nav-icon" />
-          <span className="order-nav-text">ADENCY</span>
+          <Image src="/assests/logo1.png" alt="Adency Logo" width={100} height={32} className="order-nav-logo-h" priority />
         </Link>
         <Link href="/plans" className="order-nav-back">← Back to Plans</Link>
       </header>
