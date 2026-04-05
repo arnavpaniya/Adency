@@ -18,6 +18,8 @@ declare module "react" {
         "camera-orbit"?: string;
         "field-of-view"?: string;
         "rotation-per-second"?: string;
+        "environment-image"?: string;
+        loading?: string;
       };
     }
   }
