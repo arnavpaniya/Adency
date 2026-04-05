@@ -84,7 +84,7 @@ function OrderForm() {
                 <input 
                   required
                   type="text" 
-                  placeholder="Arnav Paniya"
+                  placeholder="John Doe"
                   className="w-full bg-[#f3ebe066] border-none rounded-2xl p-5 text-sm font-bold text-[#1a1512] focus:ring-2 focus:ring-orange-500/20 transition-all outline-none"
                   value={formData.name}
                   onChange={(e) => setFormData({...formData, name: e.target.value})}
@@ -120,7 +120,7 @@ function OrderForm() {
                 <input 
                   required
                   type="email" 
-                  placeholder="arnav@growwithadency.com"
+                  placeholder="email@example.com"
                   className="w-full bg-[#f3ebe066] border-none rounded-2xl p-5 text-sm font-bold text-[#1a1512] focus:ring-2 focus:ring-orange-500/20 transition-all outline-none"
                   value={formData.email}
                   onChange={(e) => setFormData({...formData, email: e.target.value})}
