@@ -12,8 +12,7 @@ export function Footer() {
           {/* Brand Info */}
           <div className="md:col-span-2 space-y-6">
             <Link href="/" className="flex items-center gap-3 group">
-              <Image src="/assets/logo.png" alt="ADENCY" width={48} height={48} className="site-nav-logo-img drop-shadow-sm transition-transform group-hover:scale-105"/>
-              <span className="font-bebas text-4xl tracking-widest text-[#1a1512]">ADENCY</span>
+              <Image src="/assets/logo1.png" alt="ADENCY" width={600} height={160} className="site-nav-logo-img drop-shadow-sm transition-transform group-hover:scale-105 h-auto w-auto max-h-40 object-contain" />
             </Link>
             <p className="text-gray-500 max-w-sm leading-relaxed font-medium">
               We specialize in high-conversion UGC, brand promos, and cinematic social content. 

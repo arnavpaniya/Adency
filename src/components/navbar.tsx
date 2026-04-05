@@ -55,22 +55,8 @@ export function Navbar({ onOpenModal, variant = "default" }: NavbarProps) {
         } ${navVisible ? "translate-y-0" : "-translate-y-full"}`}
       >
         <div className="w-full max-w-7xl px-7 flex justify-between items-center">
-          <Link 
-            href="/" 
-            className="flex items-center gap-3 no-underline group"
-            onClick={() => setIsMenuOpen(false)}
-          >
-            <Image
-              src="/assets/logo.png"
-              alt="ADENCY Logo"
-              width={42}
-              height={42}
-              className="site-nav-logo-img drop-shadow-md transition-transform group-hover:scale-110"
-              priority
-            />
-            <span className={`font-bebas text-3xl tracking-widest transition-colors duration-400 ${shouldBeGlass || isMenuOpen ? "text-[#1a1512]" : "text-white"}`}>
-              ADENCY
-            </span>
+          <Link href="/" className="flex items-center gap-3 group" onClick={() => setIsMenuOpen(false)}>
+            <Image src="/assets/logo.png" alt="ADENCY" width={110} height={110} className="site-nav-logo-img drop-shadow-sm transition-all duration-300 group-hover:scale-105 h-auto w-auto max-h-24 object-contain" priority />
           </Link>
 
           {/* Desktop Nav */}
