@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 
 const PORTFOLIO_ITEMS = [
   { 
@@ -78,8 +79,22 @@ export default function Portfolio() {
   }, []);
 
   return (
-    <section id="portfolio" className="portfolio-section">
-      <div className="portfolio-container">
+    <section id="portfolio" className="portfolio-section overflow-hidden">
+      {/* Decorative Icons */}
+      <div className="hidden md:block decorative-icon -top-16 -left-20 opacity-[0.08] scale-[1.5]">
+        <Image src="/assets/icons/icon3.png" alt="" width={400} height={400} />
+      </div>
+      <div className="hidden lg:block decorative-icon top-1/4 -right-24 opacity-[0.05] scale-[1.3] rotate-12">
+        <Image src="/assets/icons/icon9.png" alt="" width={350} height={350} />
+      </div>
+      <div className="hidden md:block decorative-icon bottom-0 -left-32 opacity-[0.1] scale-[2] -rotate-12">
+        <Image src="/assets/icons/icon6.png" alt="" width={450} height={450} />
+      </div>
+      <div className="decorative-icon -bottom-20 -right-20 opacity-[0.06] scale-[1.4]">
+        <Image src="/assets/icons/icon5.png" alt="" width={400} height={400} />
+      </div>
+
+      <div className="portfolio-container relative z-10">
         
         <div className="portfolio-header">
           <h2 className="portfolio-title">Our Recent Work</h2>
