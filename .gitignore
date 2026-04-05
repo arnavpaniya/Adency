@@ -41,4 +41,3 @@ yarn-error.log*
 next-env.d.ts
 
 # large video assets (exceed GitHub 100MB limit)
-public/assests/videos/
