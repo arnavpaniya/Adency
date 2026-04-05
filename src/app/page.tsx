@@ -6,7 +6,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import Portfolio from "../components/portfolio";
 import CameraShowcase from "../components/camera-showcase";
 import Testimonials from "../components/testimonials";
-import Preloader from "../components/preloader";
 import { Navbar } from "../components/navbar";
 import { Footer } from "../components/footer";
 import { Plans } from "../components/plans";
@@ -16,18 +15,10 @@ import { ShieldCheck } from "lucide-react";
 import Link from "next/link";
 
 export default function Home() {
-  const [loading, setLoading] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const handlePreloaderComplete = useCallback(() => {
-    setLoading(false);
-  }, []);
 
   return (
     <>
-      <AnimatePresence>
-        {loading && <Preloader onComplete={handlePreloaderComplete} />}
-      </AnimatePresence>
 
       <Navbar onOpenModal={() => setIsModalOpen(true)} />
 

@@ -1,105 +1,68 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function Preloader({ onComplete }: { onComplete: () => void }) {
   const [progress, setProgress] = useState(0);
-  const [phase, setPhase] = useState<"loading" | "reveal" | "exit">("loading");
 
-  // Simulate loading progress
   useEffect(() => {
     let raf: number;
     let start: number | null = null;
-    const duration = 1500; // 1.5s total load for snappier feel
+    const duration = 1000; // 1s snappy load
 
     const tick = (ts: number) => {
       if (!start) start = ts;
       const elapsed = ts - start;
       const raw = Math.min(elapsed / duration, 1);
-      // Ease-out cubic for smooth deceleration
       const eased = 1 - Math.pow(1 - raw, 3);
       setProgress(Math.round(eased * 100));
 
       if (raw < 1) {
         raf = requestAnimationFrame(tick);
       } else {
-        // Loading done → start reveal phase
-        setPhase("reveal");
+        setTimeout(onComplete, 400); // Small pause at 100%
       }
     };
 
     raf = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(raf);
-  }, []);
-
-  // Handle phase transitions
-  useEffect(() => {
-    if (phase === "reveal") {
-      const t = setTimeout(() => setPhase("exit"), 400);
-      return () => clearTimeout(t);
-    }
-    if (phase === "exit") {
-      const t = setTimeout(onComplete, 700);
-      return () => clearTimeout(t);
-    }
-  }, [phase, onComplete]);
-
-  const letters = "ADENCY".split("");
+  }, [onComplete]);
 
   return (
-    <div className={`pl ${phase === "exit" ? "pl--exit" : ""}`}>
-      {/* Background layers */}
-      <div className="pl__bg" />
-      <div className="pl__streaks" />
-      <div className="pl__grain" />
+    <motion.div
+      initial={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+      className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-white/80 backdrop-blur-2xl"
+    >
+      <div className="relative flex flex-col items-center">
+        {/* Subtle Brand Text */}
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="mb-8"
+        >
+          <span className="text-4xl md:text-5xl font-black text-[#1a1512] tracking-[0.2em] uppercase">
+            ADENCY
+          </span>
+        </motion.div>
 
-      {/* Shutter lines */}
-      <div className="pl__shutter pl__shutter--top" />
-      <div className="pl__shutter pl__shutter--bottom" />
-
-      {/* Center content */}
-      <div className="pl__center">
-        {/* Brand text */}
-        <h1 className="pl__brand" style={{ color: "var(--text-dark)" }}>
-          {letters.map((char, i) => (
-            <span
-              key={i}
-              className="pl__char"
-              style={{ animationDelay: `${0.3 + i * 0.08}s` }}
-            >
-              {char}
-            </span>
-          ))}
-        </h1>
-
-        {/* Tagline */}
-        <p className="pl__tagline" style={{ color: "var(--accent)", fontWeight: 800 }}>VIDEO PRODUCTION STUDIO</p>
-
-        {/* Progress bar */}
-        <div className="pl__track" style={{ background: "rgba(240, 112, 32, 0.1)" }}>
-          <div
-            className="pl__bar"
-            style={{ 
-              transform: `scaleX(${progress / 100})`,
-              background: "var(--accent)"
-            }}
-          />
-          <div
-            className="pl__glow"
-            style={{ 
-              left: `${progress}%`,
-              background: "var(--accent)",
-              boxShadow: "0 0 20px var(--accent)"
-            }}
+        {/* Minimalist Progress Line */}
+        <div className="w-48 h-[1px] bg-gray-100 relative overflow-hidden rounded-full">
+          <motion.div
+            className="absolute inset-y-0 left-0 bg-[#f07020]"
+            style={{ width: `${progress}%` }}
+            transition={{ type: "spring", stiffness: 100, damping: 20 }}
           />
         </div>
 
-        {/* Percentage */}
-        <span className="pl__pct" style={{ color: "var(--text-dark)", fontWeight: 700 }}>{progress}%</span>
+        {/* Subtle Percentage */}
+        <div className="mt-4 text-[0.6rem] font-bold text-gray-400 tracking-[0.3em] uppercase">
+          Loading <span className="text-orange-500/60 ml-1">{progress}%</span>
+        </div>
       </div>
-
-      {/* Lens flare */}
-      <div className="pl__flare" />
-    </div>
+    </motion.div>
   );
 }

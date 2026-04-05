@@ -2,8 +2,9 @@ import type { Metadata } from "next";
 import { Bebas_Neue, Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Script from "next/script";
-import { Providers } from "../components/providers";
-import { CustomCursor } from "../components/custom-cursor";
+import { Providers } from "@/components/providers";
+import { CustomCursor } from "@/components/custom-cursor";
+import { GlobalPreloader } from "@/components/global-preloader";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -39,6 +40,7 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col relative">
         <Providers>
+          <GlobalPreloader />
           <CustomCursor />
           {children}
         </Providers>
