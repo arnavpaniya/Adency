@@ -26,10 +26,10 @@ export default function Home() {
         {/* ── Hero Section ── */}
         <section className="relative h-screen min-h-[600px] w-full flex items-center justify-center overflow-hidden">
           {/* Decorative Icons (Static, Original Colors) */}
-          <div className="decorative-icon top-[15%] right-[10%] opacity-20 scale-150">
+          <div className="hidden md:block decorative-icon top-[15%] right-[10%] opacity-20 scale-150">
             <Image src="/assets/icons/icon1.png" alt="" width={400} height={400} />
           </div>
-          <div className="decorative-icon bottom-[10%] left-[5%] opacity-15 scale-[2]">
+          <div className="decorative-icon bottom-[10%] left-[5%] opacity-[0.08] md:opacity-15 scale-[1.2] md:scale-[2]">
             <Image src="/assets/icons/icon2.png" alt="" width={500} height={500} />
           </div>
 
@@ -70,7 +70,7 @@ export default function Home() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.8 }}
-              className="text-5xl md:text-7xl font-bold text-white mb-6 tracking-tight leading-tight"
+              className="text-4xl md:text-7xl font-bold text-white mb-6 tracking-tight leading-[1.1] md:leading-tight"
             >
               Professional Video Production for Your Brand.
             </motion.h1>
@@ -79,7 +79,7 @@ export default function Home() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4, duration: 0.8 }}
-              className="text-lg md:text-xl text-gray-200 mb-8 max-w-2xl font-light"
+              className="text-base md:text-xl text-gray-200 mb-8 max-w-2xl font-light"
             >
               High-quality content that converts viewers into customers.
             </motion.p>
@@ -115,8 +115,8 @@ export default function Home() {
               viewport={{ once: true }}
               className="flex flex-col md:flex-row items-center justify-center gap-4 text-orange-400"
             >
-              <ShieldCheck size={32} className="shrink-0" />
-              <h2 className="text-xl md:text-2xl font-bold tracking-wide">
+              <ShieldCheck size={28} className="shrink-0 text-orange-500" />
+              <h2 className="text-base md:text-2xl font-bold tracking-wide">
                 Get your video first. <span className="text-white">Pay only after final delivery.</span>
               </h2>
             </motion.div>
@@ -147,19 +147,19 @@ export default function Home() {
           </div>
           <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-orange-500/5 rounded-full blur-3xl opacity-50" />
           
-          <div className="max-w-4xl mx-auto text-center relative z-10 bg-[#fdfaf6] p-12 md:p-16 rounded-[40px] shadow-xl border border-orange-100/50">
-            <h2 className="text-4xl md:text-5xl font-black text-[#1a1512] mb-6 tracking-tight leading-tight uppercase">Ready to get started?</h2>
-            <p className="text-gray-500 mb-10 text-lg md:text-xl font-medium max-w-xl mx-auto">
+          <div className="max-w-4xl mx-auto text-center relative z-10 bg-[#fdfaf6] p-8 md:p-16 rounded-[40px] shadow-xl border border-orange-100/50">
+            <h2 className="text-3xl md:text-5xl font-black text-[#1a1512] mb-6 tracking-tight leading-tight uppercase">Ready to get started?</h2>
+            <p className="text-gray-500 mb-10 text-base md:text-lg md:text-xl font-medium max-w-xl mx-auto">
               Transform your brand presence with high-conversion video content. No upfront payment, zero risk.
             </p>
             
             <Link 
               href="/plans"
-              className="inline-block bg-[#f07020] hover:bg-[#d45a10] text-white px-12 py-5 rounded-full font-black text-xl shadow-xl shadow-orange-500/30 transition-all hover:-translate-y-1 active:scale-95 no-underline"
+              className="inline-block bg-[#f07020] hover:bg-[#d45a10] text-white px-8 md:px-12 py-4 md:py-5 rounded-full font-black text-lg md:text-xl shadow-xl shadow-orange-500/30 transition-all hover:-translate-y-1 active:scale-95 no-underline"
             >
               PROCEED TO PLANS
             </Link>
-            <p className="mt-8 text-[0.65rem] text-gray-400 font-bold uppercase tracking-[0.2em]">Select a plan to initiate your project</p>
+            <p className="mt-8 text-[0.6rem] md:text-[0.65rem] text-gray-400 font-bold uppercase tracking-[0.2em]">Select a plan to initiate your project</p>
           </div>
         </section>
 

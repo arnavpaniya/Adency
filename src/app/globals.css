@@ -979,6 +979,7 @@ a {
   transform-style: preserve-3d;
   border-radius: 20px;
   box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+  will-change: transform;
 }
 
 .portfolio-video-wrapper:hover .portfolio-card-inner,
@@ -1125,6 +1126,7 @@ a {
   padding: 0 12px;
   width: max-content;
   animation: scrollMarquee 70s linear infinite;
+  will-change: transform;
 }
 
 .tm-marquee-track:hover {

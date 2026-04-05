@@ -79,13 +79,13 @@ export default function PlansPage() {
       <Navbar onOpenModal={() => setIsModalOpen(true)} />
 
       {/* ── Background Icons (Subtle, Static) ── */}
-      <div className="decorative-icon top-[10%] -left-20 opacity-[0.12] scale-125">
+      <div className="decorative-icon top-[10%] -left-10 md:-left-20 opacity-[0.08] md:opacity-[0.12] scale-75 md:scale-125">
         <Image src="/assets/icons/icon2.png" alt="" width={600} height={600} />
       </div>
-      <div className="decorative-icon top-[35%] -right-40 opacity-[0.1] scale-110">
+      <div className="hidden md:block decorative-icon top-[35%] -right-40 opacity-[0.1] scale-110">
         <Image src="/assets/icons/icon1.png" alt="" width={700} height={700} />
       </div>
-      <div className="decorative-icon top-[65%] -left-32 opacity-[0.12] scale-105">
+      <div className="decorative-icon top-[65%] -left-20 md:-left-32 opacity-[0.08] md:opacity-[0.12] scale-75 md:scale-105">
         <Image src="/assets/icons/icon3.png" alt="" width={500} height={500} />
       </div>
 
@@ -103,7 +103,7 @@ export default function PlansPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="text-6xl md:text-8xl font-black text-[#1a1512] tracking-tighter leading-[0.9] mb-8"
+            className="text-4xl md:text-8xl font-black text-[#1a1512] tracking-tighter leading-[0.9] mb-8"
           >
             CHOOSE YOUR <br/><span className="text-orange-500">VIDEO PLAN.</span>
           </motion.h1>
@@ -236,15 +236,15 @@ export default function PlansPage() {
             className="relative z-10 px-6"
           >
             <h2 className="text-4xl md:text-6xl font-black mb-8 tracking-tighter">READY TO GET <span className="text-orange-500">STARTED?</span></h2>
-            <p className="text-lg text-gray-400 mb-12 max-w-xl mx-auto font-medium">
+            <p className="text-base md:text-lg text-gray-400 mb-12 max-w-xl mx-auto font-medium">
               Transform your brand presence with Adency. No risk, just results.
             </p>
             <Link 
               href="/order"
-              className="inline-flex items-center gap-4 bg-orange-500 hover:bg-orange-600 text-white px-12 py-6 rounded-full font-black text-xl transition-all shadow-2xl shadow-orange-500/40 hover:scale-105 active:scale-95"
+              className="inline-flex items-center gap-4 bg-orange-500 hover:bg-orange-600 text-white px-8 md:px-12 py-5 md:py-6 rounded-full font-black text-lg md:text-xl transition-all shadow-2xl shadow-orange-500/40 hover:scale-105 active:scale-95"
             >
               PROCEED TO ORDER
-              <ArrowRight size={24} />
+              <ArrowRight size={20} className="md:w-6 md:h-6" />
             </Link>
           </motion.div>
         </section>
