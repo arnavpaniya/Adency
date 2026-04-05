@@ -23,20 +23,10 @@ export function Footer() {
               <a href="https://wa.me/918764756818" target="_blank" className="footer-primary-cta text-center justify-center">
                  <MessageSquare size={18} className="mr-2" /> Start on WhatsApp
               </a>
-              <a href="https://www.instagram.com/grow_with_adency" target="_blank" className="footer-secondary-social" aria-label="Instagram">
-                 <svg 
-                  viewBox="0 0 24 24" 
-                  fill="none" 
-                  stroke="currentColor" 
-                  strokeWidth="2" 
-                  strokeLinecap="round" 
-                  strokeLinejoin="round" 
-                  className="w-5 h-5"
-                >
-                   <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-                   <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                   <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-                 </svg>
+              <a href="https://www.instagram.com/grow_with_adency" target="_blank" className="footer-secondary-social group" aria-label="Instagram">
+                 <div className="relative w-6 h-6 transition-transform group-hover:scale-110">
+                   <Image src="/assets/instagram.png" alt="Instagram" fill className="object-contain" />
+                 </div>
               </a>
             </div>
           </div>
@@ -73,8 +63,7 @@ export function Footer() {
         {/* Bottom Bar */}
         <div className="pt-8 border-t border-orange-500/10 flex flex-col md:flex-row justify-between items-center gap-6">
           <div className="flex gap-8">
-            <Link href="/terms" className="text-[0.65rem] font-black uppercase tracking-widest text-gray-400 hover:text-orange-500">Terms</Link>
-            <Link href="/privacy" className="text-[0.65rem] font-black uppercase tracking-widest text-gray-400 hover:text-orange-500">Privacy</Link>
+            <Link href="/policies" className="text-[0.65rem] font-black uppercase tracking-widest text-gray-400 hover:text-orange-500">Policies</Link>
           </div>
           <p className="text-[0.65rem] font-black uppercase tracking-widest text-gray-400">
             © 2026 ADENCY PRODUCTIONS — ALL RIGHTS RESERVED
