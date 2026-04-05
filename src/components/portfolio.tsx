@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const PORTFOLIO_ITEMS: Array<{ src: string; title: string; category: string; metric: string; description?: string }> = [
   { 
@@ -49,6 +49,7 @@ const PORTFOLIO_ITEMS: Array<{ src: string; title: string; category: string; met
 
 export default function Portfolio() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const [flippedIndex, setFlippedIndex] = useState<number | null>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -87,8 +88,12 @@ export default function Portfolio() {
 
         <div className="portfolio-grid" ref={containerRef}>
           {PORTFOLIO_ITEMS.map((item, idx) => (
-            <div key={idx} className="portfolio-video-wrapper">
-              <div className="portfolio-card-inner">
+            <div 
+              key={idx} 
+              className="portfolio-video-wrapper"
+              onClick={() => setFlippedIndex(flippedIndex === idx ? null : idx)}
+            >
+              <div className={`portfolio-card-inner ${flippedIndex === idx ? "flipped" : ""}`}>
                 {/* Front Side: Video */}
                 <div className="portfolio-card-front">
                   <video

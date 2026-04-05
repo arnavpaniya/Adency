@@ -856,6 +856,70 @@ a {
 
   .footer-bottom {
     flex-direction: column;
+    text-align: center;
+    gap: 16px;
+  }
+
+  /* Portfolio mobile adjustments */
+  .portfolio-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .portfolio-card-inner {
+    /* Potential touch-to-flip or alternative mobile layout */
+    transition: transform 400ms ease;
+  }
+
+  /* Pricing mobile adjustments */
+  .pricing-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .plan-card {
+    padding: 32px 24px;
+  }
+
+  .plan-price-large {
+    font-size: 3.5rem;
+  }
+
+  /* Mobile Nav Overlay */
+  .mobile-nav-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(252, 250, 246, 0.98);
+    backdrop-filter: blur(20px);
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 32px;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transform: translateY(-20px);
+  }
+
+  .mobile-nav-overlay--open {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
+
+  .mobile-nav-link {
+    font-family: var(--font-brand), sans-serif;
+    font-size: 2.5rem;
+    color: var(--text-dark);
+    text-decoration: none;
+    letter-spacing: 0.1em;
+    transition: color 0.3s ease;
+  }
+
+  .mobile-nav-link:hover {
+    color: var(--accent);
   }
 }
 
@@ -917,7 +981,8 @@ a {
   box-shadow: 0 20px 40px rgba(0,0,0,0.12);
 }
 
-.portfolio-video-wrapper:hover .portfolio-card-inner {
+.portfolio-video-wrapper:hover .portfolio-card-inner,
+.portfolio-card-inner.flipped {
   transform: rotateY(180deg);
   box-shadow: 0 20px 40px rgba(0,0,0,0.18);
 }
@@ -1139,6 +1204,25 @@ a {
 /* ── Policies Page ── */
 @media (max-width: 768px) {
   .policy-deco-tape { display: none; }
+  .tm-marquee-track {
+    animation-duration: 40s;
+    gap: 16px;
+  }
+  .tm-card {
+    padding: 30px 24px;
+  }
+  .tm-deco {
+    opacity: 0.3;
+    transform: scale(0.6);
+  }
+  .tm-deco-3 {
+    top: -20px;
+    left: 10px;
+  }
+  .tm-deco-2 {
+    bottom: 20px;
+    right: 10px;
+  }
 }
 /* ── Pricing Page Utilities ──────────────────────────────── */
 
