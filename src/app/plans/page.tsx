@@ -78,14 +78,14 @@ export default function PlansPage() {
     <div className="bg-[#fcfaf6] min-h-screen relative overflow-hidden flex flex-col">
       <Navbar onOpenModal={() => setIsModalOpen(true)} />
 
-      {/* ── Background Icons (Static, Original Colors) ── */}
-      <div className="decorative-icon top-[10%] -left-20 opacity-20 scale-125">
+      {/* ── Background Icons (Subtle, Static) ── */}
+      <div className="decorative-icon top-[10%] -left-20 opacity-[0.12] scale-125">
         <Image src="/assets/icons/icon2.png" alt="" width={600} height={600} />
       </div>
-      <div className="decorative-icon top-[40%] -right-40 opacity-15 scale-110">
+      <div className="decorative-icon top-[35%] -right-40 opacity-[0.1] scale-110">
         <Image src="/assets/icons/icon1.png" alt="" width={700} height={700} />
       </div>
-      <div className="decorative-icon top-[65%] -left-32 opacity-15 scale-105">
+      <div className="decorative-icon top-[65%] -left-32 opacity-[0.12] scale-105">
         <Image src="/assets/icons/icon3.png" alt="" width={500} height={500} />
       </div>
 
@@ -183,10 +183,10 @@ export default function PlansPage() {
                       className={`w-full py-5 rounded-2xl font-black text-sm uppercase tracking-widest transition-all flex items-center justify-center gap-3 active:scale-95 ${
                         plan.highlight 
                           ? "bg-orange-500 text-white shadow-xl shadow-orange-500/20 hover:bg-orange-600" 
-                          : "bg-[#1a1512] text-white hover:bg-black hover:shadow-xl shadow-black/10"
+                          : "bg-orange-50/80 text-orange-600 border border-orange-100 hover:bg-orange-50 hover:shadow-lg shadow-orange-500/5 text-orange-700"
                       }`}
                     >
-                      <Zap size={16} className={plan.highlight ? "fill-current" : ""} />
+                      <Zap size={16} className={plan.highlight ? "fill-current" : "fill-orange-400"} />
                       Buy Now
                     </Link>
                     <p className="text-[0.65rem] text-center mt-4 text-gray-400 font-bold uppercase tracking-widest">
@@ -201,7 +201,7 @@ export default function PlansPage() {
 
         {/* ── Trust Section ── */}
         <section className="mt-40 relative py-20 px-12 rounded-[60px] bg-white border border-gray-100 shadow-sm overflow-hidden text-center">
-          <div className="decorative-icon top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-15 scale-125">
+          <div className="decorative-icon top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-[0.08] scale-125">
             <Image src="/assets/icons/icon5.png" alt="" width={400} height={400} />
           </div>
           
@@ -226,7 +226,7 @@ export default function PlansPage() {
 
         {/* ── Final CTA ── */}
         <section className="mt-32 relative py-24 rounded-[60px] bg-[#1a1512] text-white text-center overflow-hidden">
-          <div className="decorative-icon -bottom-20 -right-20 opacity-20 scale-125">
+          <div className="decorative-icon -bottom-20 -right-20 opacity-[0.12] scale-125">
             <Image src="/assets/icons/icon4.png" alt="" width={500} height={500} />
           </div>
 
