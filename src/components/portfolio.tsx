@@ -56,7 +56,9 @@ export default function Portfolio() {
       (entries) => {
         entries.forEach((entry) => {
           const video = entry.target as HTMLVideoElement;
+
           if (entry.isIntersecting) {
+            video.muted = true; // ensure autoplay works
             video.play().catch(() => {});
           } else {
             video.pause();
@@ -72,9 +74,7 @@ export default function Portfolio() {
     const videoElements = containerRef.current?.querySelectorAll("video");
     videoElements?.forEach((vid) => observer.observe(vid));
 
-    return () => {
-      observer.disconnect();
-    };
+    return () => observer.disconnect();
   }, []);
 
   return (
@@ -83,7 +83,9 @@ export default function Portfolio() {
         
         <div className="portfolio-header">
           <h2 className="portfolio-title">Our Recent Work</h2>
-          <p className="portfolio-subtitle">High quality cinematic productions built to convert.</p>
+          <p className="portfolio-subtitle">
+            High quality cinematic productions built to convert.
+          </p>
         </div>
 
         <div className="portfolio-grid" ref={containerRef}>
@@ -94,6 +96,7 @@ export default function Portfolio() {
               onClick={() => setFlippedIndex(flippedIndex === idx ? null : idx)}
             >
               <div className={`portfolio-card-inner ${flippedIndex === idx ? "flipped" : ""}`}>
+                
                 {/* Front Side: Video */}
                 <div className="portfolio-card-front">
                   <video
@@ -102,7 +105,8 @@ export default function Portfolio() {
                     loop
                     muted
                     playsInline
-                    preload="metadata"
+                    autoPlay
+                    preload="auto"
                   />
                 </div>
                 
@@ -120,6 +124,7 @@ export default function Portfolio() {
                     </div>
                   </div>
                 </div>
+
               </div>
             </div>
           ))}
