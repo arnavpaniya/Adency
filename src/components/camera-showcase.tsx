@@ -2,8 +2,26 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { useEffect, useRef } from "react";
 
 export default function CameraShowcase() {
+  const modelRef = useRef<any>(null);
+
+  useEffect(() => {
+    const modelViewer = modelRef.current;
+    if (modelViewer) {
+      modelViewer.addEventListener('load', () => {
+        const materials = modelViewer.model?.materials;
+        if (materials) {
+          materials.forEach((material: any) => {
+            // Force opaque mode to prevent "see-through" ghosting
+            material.setAlphaMode('OPAQUE');
+          });
+        }
+      });
+    }
+  }, []);
+
   return (
     <section className="relative py-32 px-6 bg-white overflow-hidden flex flex-col items-center">
       {/* Decorative Background Icon (Static, High Fidelity) */}
@@ -35,12 +53,15 @@ export default function CameraShowcase() {
           className="relative w-full h-[600px] md:h-[800px] cursor-grab active:cursor-grabbing"
         >
           <model-viewer
+            ref={modelRef}
             src="/assets/camera3d.glb"
             alt="3D Professional Camera"
             auto-rotate
             camera-controls
-            shadow-intensity="1.5"
-            exposure="1.2"
+            shadow-intensity="2"
+            shadow-softness="0.5"
+            exposure="1"
+            environment-image="neutral"
             interaction-prompt="none"
             style={{ width: '100%', height: '100%', outline: 'none' }}
           ></model-viewer>
