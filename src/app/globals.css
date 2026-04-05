@@ -885,29 +885,29 @@ a {
     font-size: 3.5rem;
   }
 
-  /* Mobile Nav Overlay */
-  .mobile-nav-overlay {
-    position: fixed;
-    inset: 0;
-    background: rgba(252, 250, 246, 0.98);
-    backdrop-filter: blur(20px);
-    z-index: 100;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 32px;
-    opacity: 0;
-    pointer-events: none;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    transform: translateY(-20px);
-  }
+.mobile-nav-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(252, 250, 246, 0.98);
+  backdrop-filter: blur(20px);
+  z-index: 100;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateY(-20px);
+}
 
-  .mobile-nav-overlay--open {
-    opacity: 1;
-    pointer-events: auto;
-    transform: translateY(0);
-  }
+.mobile-nav-overlay--open {
+  display: flex;
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
 
   .mobile-nav-link {
     font-family: var(--font-brand), sans-serif;

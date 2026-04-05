@@ -72,17 +72,29 @@ export function Navbar({ onOpenModal }: NavbarProps) {
           </Link>
 
           {/* Desktop Nav */}
-          <nav className="hidden md:flex gap-8 text-[0.85rem] font-bold uppercase tracking-widest items-center">
-            <Link href="/plans" className={`no-underline hover:text-orange-500 transition-colors ${shouldBeGlass ? "text-[#1a1512]" : "text-white drop-shadow-md"}`}>
+          <nav className="hidden md:flex gap-8 text-[0.9rem] font-bold uppercase tracking-widest items-center">
+            <Link 
+              href="/plans" 
+              className={`no-underline hover:text-orange-500 transition-all duration-300 ${
+                shouldBeGlass ? "text-[#1a1512]" : "text-white"
+              }`}
+            >
               Plans
             </Link>
-            <a href="/#portfolio" className={`no-underline hover:text-orange-500 transition-colors ${shouldBeGlass ? "text-[#1a1512]" : "text-white drop-shadow-md"}`}>
+            <a 
+              href="/#portfolio" 
+              className={`no-underline hover:text-orange-500 transition-all duration-300 ${
+                shouldBeGlass ? "text-[#1a1512]" : "text-white"
+              }`}
+            >
               Portfolio
             </a>
             <Link 
               href="/plans"
-              className={`px-6 py-2.5 rounded-full font-black transition-all hover:scale-105 active:scale-95 text-xs tracking-wider uppercase no-underline ${
-                shouldBeGlass ? "bg-[#f07020] text-white shadow-lg shadow-orange-500/20" : "bg-white/20 text-white backdrop-blur-md border border-white/40 hover:bg-white/30 drop-shadow-sm"
+              className={`px-7 py-2.5 rounded-full font-black transition-all hover:scale-105 active:scale-95 text-xs tracking-widest uppercase no-underline shadow-lg ${
+                shouldBeGlass 
+                ? "bg-[#f07020] text-white shadow-orange-500/20" 
+                : "bg-white text-[#1a1512] hover:bg-white/90"
               }`}
             >
               Start Project
@@ -103,7 +115,7 @@ export function Navbar({ onOpenModal }: NavbarProps) {
       </header>
 
       {/* Mobile Nav Overlay */}
-      <div className={`mobile-nav-overlay ${isMenuOpen ? "mobile-nav-overlay--open" : ""}`}>
+      <div className={`mobile-nav-overlay md:hidden ${isMenuOpen ? "mobile-nav-overlay--open" : ""}`}>
         <Link 
           href="/plans" 
           className="mobile-nav-link"
