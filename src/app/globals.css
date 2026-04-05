@@ -10,158 +10,283 @@ a {
   color: inherit;
 }
 
-/* ── Preloader ───────────────────────────────────────────── */
-.pl-root {
+/* ── Cinematic Preloader ─────────────────────────────────── */
+
+/* Root overlay */
+.pl {
   position: fixed;
   inset: 0;
-  z-index: 200;
+  z-index: 9999;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  transition: opacity 520ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1),
+              transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.pl-exit {
+.pl--exit {
   opacity: 0;
+  transform: scale(1.04);
   pointer-events: none;
 }
 
-/* New Clean Background */
-.pl-bg-clean {
+/* Deep cinematic gradient background */
+.pl__bg {
   position: absolute;
   inset: 0;
-  background: #020101; /* Deep cinematic black */
-  z-index: 1;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 40%, #1a0e08 0%, #050202 70%),
+    #020101;
 }
 
-/* Video Styling and Overlay */
-.pl-video {
+/* Slow-rotating soft light streaks */
+.pl__streaks {
   position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  z-index: 2;
-  opacity: 0;
-  filter: blur(10px) brightness(0.6);
-  transform: scale(1.04);
-  transition: opacity 1.2s ease, filter 1.6s ease, transform 1.6s ease;
+  inset: -50%;
+  background:
+    conic-gradient(
+      from 0deg at 50% 50%,
+      transparent 0deg,
+      rgba(240, 112, 32, 0.03) 40deg,
+      transparent 80deg,
+      rgba(0, 128, 128, 0.025) 160deg,
+      transparent 200deg,
+      rgba(240, 112, 32, 0.035) 280deg,
+      transparent 320deg
+    );
+  animation: pl-rotate 22s linear infinite;
 }
 
-.pl-video-overlay {
+@keyframes pl-rotate {
+  to { transform: rotate(360deg); }
+}
+
+/* Film grain noise overlay */
+.pl__grain {
   position: absolute;
   inset: 0;
-  z-index: 3;
-  background: linear-gradient(135deg, rgba(0, 128, 128, 0.45) 0%, rgba(240, 112, 32, 0.45) 100%);
+  z-index: 10;
+  pointer-events: none;
+  opacity: 0.055;
   mix-blend-mode: overlay;
-  opacity: 0;
-  transition: opacity 1.5s ease;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation: pl-grain 0.5s steps(4) infinite;
 }
 
-.pl-video-overlay--in {
-  opacity: 1;
+@keyframes pl-grain {
+  0%, 100% { transform: translate(0, 0); }
+  25% { transform: translate(-2%, 2%); }
+  50% { transform: translate(2%, -2%); }
+  75% { transform: translate(-1%, -1%); }
 }
 
-.pl-video--in {
-  opacity: 1;
-  filter: blur(0px) brightness(1);
-  transform: scale(1);
+/* Shutter bars — close on exit for cinematic feel */
+.pl__shutter {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 0;
+  background: #000;
+  z-index: 20;
+  transition: height 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
+.pl__shutter--top { top: 0; }
+.pl__shutter--bottom { bottom: 0; }
+.pl--exit .pl__shutter { height: 52%; }
 
-.pl-video--out {
-  opacity: 0;
-  filter: blur(8px) brightness(0.3);
-  transform: scale(1.02);
-  transition: opacity 0.8s ease, filter 0.8s ease, transform 0.8s ease;
-}
-/* New Branding Phase (Enhanced Logo) */
-.pl-new-brand {
+/* Center content container */
+.pl__center {
   position: relative;
-  z-index: 5;
+  z-index: 15;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  gap: 0;
+}
+
+/* ─── Brand Text ─── */
+.pl__brand {
+  display: flex;
+  gap: 0.06em;
+  font-family: var(--font-brand), 'Bebas Neue', sans-serif;
+  font-size: clamp(3.6rem, 12vw, 8rem);
+  font-weight: 400;
+  letter-spacing: 0.18em;
+  line-height: 1;
+  margin: 0;
+  color: transparent;
+  position: relative;
+}
+
+/* Each character flips in with staggered delay */
+.pl__char {
+  display: inline-block;
   opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.8s ease;
+  transform: translateY(40px) rotateX(90deg);
+  animation: pl-char-in 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  background: linear-gradient(
+    180deg,
+    #fffaf5 0%,
+    #f07020 45%,
+    #d45a10 100%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 28px rgba(240, 112, 32, 0.4))
+          drop-shadow(0 0 56px rgba(240, 112, 32, 0.12));
 }
 
-.pl-new-brand--in {
-  opacity: 1;
-}
-
-.pl-new-logo-img-wrapper {
-  width: min(80vw, 420px); /* Extensively increased size */
-  aspect-ratio: 1;
-  opacity: 0;
-  transform: scale(0.7);
-  filter: blur(12px);
-  transition: 
-    opacity 1.2s cubic-bezier(0.2, 0.8, 0.2, 1), 
-    transform 1.4s cubic-bezier(0.2, 0.8, 0.2, 1),
-    filter 1.2s ease;
-}
-
-.pl-new-brand--in .pl-new-logo-img-wrapper {
-  opacity: 1;
-  transform: scale(1.2); /* Final extensive scale */
-  filter: blur(0);
-}
-
-.pl-new-logo-img {
-  width: 100% !important;
-  height: 100% !important;
-  object-fit: contain;
-  filter: drop-shadow(0 0 50px rgba(255, 112, 32, 0.5)); /* Stronger premium glow */
-}
-
-
-
-
-
-/* cinematic noise */
-.pl-noise {
-  position: absolute;
-  inset: 0;
-  z-index: 6;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  opacity: 0.18;
-  mix-blend-mode: overlay;
-  pointer-events: none;
-}
-
-/* hero background bleed-in */
-.pl-hero-blur {
-  position: absolute;
-  inset: 0;
-  background-image: url("/assests/team.png");
-  background-size: cover;
-  background-position: center 28%;
-  opacity: 0;
-  filter: blur(28px) brightness(0.2);
-  transform: scale(1.08);
-  transition: opacity 1s ease, filter 1s ease, transform 1s ease;
-  z-index: 3;
-}
-
-.pl-hero-blur--in {
-  opacity: 0.65;
-  filter: blur(12px) brightness(1);
-  transform: scale(1.02);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .pl-video,
-  .pl-new-char--animate,
-  .pl-new-tagline--animate,
-  .pl-new-logo-img-wrapper {
-    transition: none !important;
-    animation: none !important;
+@keyframes pl-char-in {
+  0% {
+    opacity: 0;
+    transform: translateY(40px) rotateX(90deg);
+    filter: drop-shadow(0 0 0 transparent) blur(8px);
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(-4px) rotateX(-5deg);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) rotateX(0deg);
+    filter: drop-shadow(0 0 28px rgba(240, 112, 32, 0.4))
+            drop-shadow(0 0 56px rgba(240, 112, 32, 0.12));
   }
 }
+
+/* Pulsing glow behind the text */
+.pl__brand::after {
+  content: "ADENCY";
+  position: absolute;
+  inset: 0;
+  display: flex;
+  gap: 0.06em;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  letter-spacing: inherit;
+  line-height: inherit;
+  color: rgba(240, 112, 32, 0.12);
+  -webkit-text-stroke: 0;
+  filter: blur(24px);
+  animation: pl-glow-pulse 2.6s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes pl-glow-pulse {
+  0%, 100% { opacity: 0.4; transform: scale(1); }
+  50% { opacity: 0.9; transform: scale(1.03); }
+}
+
+/* ─── Tagline ─── */
+.pl__tagline {
+  margin: 14px 0 0;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-size: clamp(0.6rem, 1.4vw, 0.82rem);
+  font-weight: 500;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: rgba(240, 112, 32, 0.32);
+  opacity: 0;
+  animation: pl-fade-up 0.8s 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes pl-fade-up {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ─── Progress Track ─── */
+.pl__track {
+  position: relative;
+  width: clamp(180px, 28vw, 320px);
+  height: 2px;
+  margin-top: 36px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 2px;
+  overflow: visible;
+  opacity: 0;
+  animation: pl-fade-up 0.5s 1.2s ease forwards;
+}
+
+/* Gradient progress fill */
+.pl__bar {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, #d45a10, #f07020, #f5a060);
+  border-radius: 2px;
+  transform-origin: left center;
+  transition: transform 0.15s ease-out;
+  box-shadow: 0 0 12px rgba(240, 112, 32, 0.45),
+              0 0 28px rgba(240, 112, 32, 0.15);
+}
+
+/* Glowing dot at the head of the bar */
+.pl__glow {
+  position: absolute;
+  top: 50%;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #f5a060;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 14px 4px rgba(240, 112, 32, 0.55),
+              0 0 36px 8px rgba(240, 112, 32, 0.18);
+  transition: left 0.15s ease-out;
+}
+
+/* ─── Percentage Counter ─── */
+.pl__pct {
+  margin-top: 16px;
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.3em;
+  color: rgba(240, 112, 32, 0.35);
+  opacity: 0;
+  animation: pl-fade-up 0.5s 1.3s ease forwards;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ─── Lens Flare ─── */
+.pl__flare {
+  position: absolute;
+  top: 28%;
+  left: 55%;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(240, 112, 32, 0.06) 0%,
+    rgba(240, 112, 32, 0.015) 40%,
+    transparent 70%
+  );
+  filter: blur(40px);
+  animation: pl-flare 5s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 5;
+}
+
+@keyframes pl-flare {
+  0%, 100% { opacity: 0.35; transform: translate(0, 0) scale(1); }
+  33% { opacity: 0.65; transform: translate(-20px, 10px) scale(1.1); }
+  66% { opacity: 0.25; transform: translate(15px, -15px) scale(0.9); }
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .pl__char, .pl__tagline, .pl__track, .pl__pct,
+  .pl__streaks, .pl__grain, .pl__flare {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+  }
+}
+
 
 
 .adency-shell {

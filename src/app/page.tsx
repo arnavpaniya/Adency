@@ -2,13 +2,19 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import Portfolio from "../components/portfolio";
 import Testimonials from "../components/testimonials";
+import Preloader from "../components/preloader";
 
 export default function Home() {
   const [scrolled, setScrolled] = useState(false);
   const [navVisible, setNavVisible] = useState(false);
+  const [loading, setLoading] = useState(true);
+
+  const handlePreloaderComplete = useCallback(() => {
+    setLoading(false);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -21,7 +27,9 @@ export default function Home() {
   }, []);
 
   return (
-    <main className="adency-shell">
+    <>
+      {loading && <Preloader onComplete={handlePreloaderComplete} />}
+      <main className="adency-shell">
 
       {/* ── Hero ── */}
       <section className="hero-banner">
@@ -172,5 +180,6 @@ export default function Home() {
         </div>
       </footer>
     </main>
+    </>
   );
 }
