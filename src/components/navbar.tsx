@@ -7,9 +7,10 @@ import { usePathname } from "next/navigation";
 
 type NavbarProps = {
   onOpenModal: () => void;
+  variant?: "default" | "dark"; // dark variant = for light pages, default = for home/dark pages
 };
 
-export function Navbar({ onOpenModal }: NavbarProps) {
+export function Navbar({ onOpenModal, variant = "default" }: NavbarProps) {
   const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -18,6 +19,7 @@ export function Navbar({ onOpenModal }: NavbarProps) {
 
   const isHome = pathname === "/";
   const shouldBeGlass = !isHome || scrolled;
+  const glassEffect = !isHome || scrolled;
 
   useEffect(() => {
     const handleScroll = () => {
