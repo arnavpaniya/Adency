@@ -25,9 +25,9 @@ export function Navbar({ onOpenModal, variant = "default" }: NavbarProps) {
     const handleScroll = () => {
       if (isMenuOpen) return;
       const currentScrollY = window.scrollY;
-      setScrolled(currentScrollY > 20);
+      setScrolled(currentScrollY > 100);
       
-      if (currentScrollY > lastScrollY && currentScrollY > 100) {
+      if (currentScrollY > lastScrollY && currentScrollY > 400) {
         setNavVisible(false);
       } else {
         setNavVisible(true);
@@ -63,7 +63,7 @@ export function Navbar({ onOpenModal, variant = "default" }: NavbarProps) {
           <nav className="hidden md:flex gap-8 text-[0.9rem] font-bold uppercase tracking-widest items-center">
             <Link 
               href="/plans" 
-              className={`no-underline hover:text-orange-500 transition-all duration-300 ${
+              className={`no-underline hover:text-orange-500 transition-all duration-300 drop-shadow-sm ${
                 shouldBeGlass ? "text-[#1a1512]" : "text-white"
               }`}
             >
@@ -71,7 +71,7 @@ export function Navbar({ onOpenModal, variant = "default" }: NavbarProps) {
             </Link>
             <a 
               href="/#portfolio" 
-              className={`no-underline hover:text-orange-500 transition-all duration-300 ${
+              className={`no-underline hover:text-orange-500 transition-all duration-300 drop-shadow-sm ${
                 shouldBeGlass ? "text-[#1a1512]" : "text-white"
               }`}
             >
