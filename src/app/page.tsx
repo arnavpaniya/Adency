@@ -2,16 +2,26 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import PreloaderOverlay from "./preloader-overlay";
+import { useState, useEffect } from "react";
 import Portfolio from "../components/portfolio";
 import Testimonials from "../components/testimonials";
-import Navbar from "../components/navbar";
-import Footer from "../components/footer";
 
 export default function Home() {
+  const [scrolled, setScrolled] = useState(false);
+  const [navVisible, setNavVisible] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+      setNavVisible(window.scrollY > window.innerHeight * 0.8);
+    };
+    handleScroll();
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
     <main className="adency-shell">
-      <PreloaderOverlay />
 
       {/* ── Hero ── */}
       <section className="hero-banner">
@@ -26,7 +36,31 @@ export default function Home() {
 
         <div className="hero-backdrop" />
 
-        <Navbar variant="transparent" />
+        {/* ── Navbar (Inline Logic) ── */}
+        <header className={`site-nav ${scrolled ? "site-nav--glass" : "site-nav--transparent"} ${navVisible ? "site-nav--visible" : "site-nav--hidden"}`}>
+          <div className="site-nav-inner">
+            <Link href="/" className="site-nav-brand">
+              <div className="site-nav-logo-wrapper">
+                <Image
+                  src="/assests/logo.png"
+                  alt="ADENCY Logo"
+                  width={32}
+                  height={32}
+                  className="site-nav-logo-img"
+                  priority
+                />
+              </div>
+              <span className="site-nav-logo-text">ADENCY</span>
+            </Link>
+
+            <nav className="site-nav-links">
+              <a href="#portfolio">Portfolio</a>
+              <a href="#plans">Plans</a>
+              <a href="#contact">Contact</a>
+            </nav>
+          </div>
+        </header>
+
 
         <div className="hero-content">
           <p className="hero-kicker">Trust-first video production agency</p>
@@ -54,6 +88,8 @@ export default function Home() {
             </a>
           </div>
         </div>
+
+
       </section>
 
       {/* ── Portfolio ── */}
@@ -63,7 +99,78 @@ export default function Home() {
       <Testimonials />
 
       {/* ── Footer ── */}
-      <Footer />
+      {/* ── Footer (Inlined) ── */}
+      <footer id="contact" className="site-footer">
+        <div className="footer-aura" />
+        <div className="footer-glass">
+          
+          <div className="footer-top">
+            <div>
+              <p className="footer-eyebrow">Trust-driven production studio</p>
+              <h2 className="footer-title">Let&apos;s shoot something memorable.</h2>
+              <p className="footer-copy">
+                High quality video content for brands with a no-risk start.
+                No upfront payment. Pay only after delivery.
+              </p>
+            </div>
+
+            <a
+              className="footer-primary-cta"
+              href="https://wa.me/918764756818"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Start on WhatsApp
+            </a>
+          </div>
+
+          <div className="footer-pill-row">
+            <span>Pay Only After Delivery</span>
+            <span>Plans Starting at ₹2000</span>
+            <span>UGC + Brand Ads + Social Content</span>
+          </div>
+
+          <div className="footer-grid">
+            <div className="footer-block">
+              <h3>Address</h3>
+              <p>
+                P-88, 2nd floor, Adency office,<br />
+                Silver Birches, Jaipur,<br />
+                Rajasthan – 302015
+              </p>
+            </div>
+
+            <div className="footer-block">
+              <h3>Quick Links</h3>
+              <ul>
+                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#contact">Contact</a></li>
+              </ul>
+            </div>
+
+            <div className="footer-block">
+              <h3>Contact</h3>
+              <ul>
+                <li><a href="tel:+919256459588">+91 9256459588</a></li>
+                <li><a href="mailto:info@growwithadency.com">info@growwithadency.com</a></li>
+                <li>Mon–Sat, 11AM – 07PM</li>
+              </ul>
+            </div>
+
+            <div className="footer-block">
+              <h3>Social</h3>
+              <ul>
+                <li><a href="https://www.instagram.com/grow_with_adency" target="_blank" rel="noreferrer">Instagram</a></li>
+              </ul>
+            </div>
+          </div>
+
+          <div className="footer-bottom">
+            <p>ADENCY builds UGC, brand promos, and social content that converts.</p>
+            <p>© 2026 ADENCY. All rights reserved.</p>
+          </div>
+        </div>
+      </footer>
     </main>
   );
 }
