@@ -10,15 +10,15 @@ export function Footer() {
       <div className="footer-glass py-12 px-8 md:py-20 md:px-16">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
           {/* Brand Info */}
-          <div className="md:col-span-2 space-y-6">
-            <Link href="/" className="flex items-center gap-3 group">
-              <Image src="/assets/logo1.png" alt="ADENCY" width={800} height={220} className="site-nav-logo-img drop-shadow-sm transition-transform group-hover:scale-105 h-auto w-screen max-w-[800px] max-h-64 object-contain" />
+          <div className="md:col-span-2 flex flex-col items-center text-center space-y-6">
+            <Link href="/" className="flex items-center justify-center gap-3 group">
+              <Image src="/assets/logo1.png" alt="ADENCY" width={800} height={220} className="site-nav-logo-img drop-shadow-sm transition-transform group-hover:scale-105 h-auto w-full max-w-[500px] max-h-48 object-contain" />
             </Link>
-            <p className="text-gray-500 max-w-sm leading-relaxed font-medium">
+            <p className="text-gray-500 max-w-sm leading-relaxed font-medium mx-auto">
               We specialize in high-conversion UGC, brand promos, and cinematic social content. 
               <span className="text-orange-500 font-bold block mt-2">Zero upfront cost. 100% Trust.</span>
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 pt-4">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4 w-full">
               <a href="https://wa.me/918764756818" target="_blank" className="footer-primary-cta text-center justify-center">
                  <MessageSquare size={18} className="mr-2" /> Start on WhatsApp
               </a>
