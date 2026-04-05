@@ -1,0 +1,6 @@
+499dda2 HEAD@{0}: rebase (abort): returning to refs/heads/main
+499dda2 HEAD@{1}: rebase (abort): returning to refs/heads/main
+cfc6a3a HEAD@{2}: commit: my latest changes
+499dda2 HEAD@{3}: commit: AG edit1
+d297267 HEAD@{4}: reset: moving to HEAD
+d297267 HEAD@{5}: clone: from https://github.com/arnavpaniya/Adency.git
