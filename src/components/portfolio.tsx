@@ -2,42 +2,48 @@
 
 import { useEffect, useRef } from "react";
 
-const PORTFOLIO_ITEMS = [
+const PORTFOLIO_ITEMS: Array<{ src: string; title: string; category: string; metric: string; description?: string }> = [
   { 
     src: "/assests/videos/video1.mp4", 
     title: "Eco-Wear Launch", 
     category: "Brand Promo", 
-    metric: "+140% ROAS" 
+    metric: "+140% ROAS",
+    description: "A high-converting UGC video crafted to showcase the brand in a natural and engaging way. Designed for social platforms with fast pacing, clean edits, and strong visual storytelling."
   },
   { 
     src: "/assests/videos/video2.mp4", 
     title: "Urban Steps App", 
     category: "UGC Campaign", 
-    metric: "2.1M Views" 
+    metric: "2.1M Views",
+    description: "A relatable lifestyle UGC video designed to connect with the audience authentically. Built for social media with natural storytelling, subtle edits, and a focus on real-world usage."
   },
   { 
     src: "/assests/videos/video3.mp4", 
     title: "Glow Skincare", 
     category: "Social Content", 
-    metric: "-40% CPA" 
+    metric: "-40% CPA",
+    description: "A visually engaging video crafted to capture attention within the first few seconds. Designed for social platforms with sharp edits, smooth transitions, and a focus on keeping viewers hooked."
   },
   { 
     src: "/assests/videos/video4.mp4", 
     title: "FitTech Watch", 
     category: "Product Launch", 
-    metric: "15k Clicks" 
+    metric: "15k Clicks",
+    description: "A clean and engaging video designed to showcase the brand in a natural and appealing way. Optimized for social platforms with smooth pacing, refined edits, and a focus on visual clarity."
   },
   { 
     src: "/assests/videos/video5.mp4", 
     title: "Brew Coffee Co.", 
     category: "UGC Skit", 
-    metric: "Viral 4M+" 
+    metric: "Viral 4M+",
+    description: "A premium-quality video crafted to elevate the brand’s visual presence. Designed for modern platforms with polished edits, smooth transitions, and a refined storytelling approach."
   },
   { 
     src: "/assests/videos/video6.mp4", 
     title: "Minimalist Desk", 
     category: "Aesthetic B-Roll", 
-    metric: "+85% Conv." 
+    metric: "+85% Conv.",
+    description: "A content-driven UGC video designed to communicate the message clearly and effectively. Optimized for social platforms with natural delivery, clean edits, and a focus on audience engagement."
   },
 ];
 
@@ -100,6 +106,9 @@ export default function Portfolio() {
                   <div className="pvd-content">
                     <p className="pvd-category">{item.category}</p>
                     <h3 className="pvd-title">{item.title}</h3>
+                    {item.description && (
+                      <p className="pvd-description">{item.description}</p>
+                    )}
                     <div className="pvd-metric">
                       <span className="pvd-metric-bolt">⚡</span>
                       {item.metric}
