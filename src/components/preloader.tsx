@@ -44,7 +44,7 @@ export default function Preloader({ onComplete }: { onComplete: () => void }) {
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="mb-8"
         >
-          <span className="text-4xl md:text-5xl font-black text-[#1a1512] tracking-[0.2em] uppercase">
+          <span className="text-4xl md:text-5xl font-black text-[#f07020] tracking-[0.2em] uppercase">
             ADENCY
           </span>
         </motion.div>
