@@ -82,3 +82,4 @@ The entire ADENCY platform is constructed on three key pillars:
 This entire project was designed and developed by:
 - **Arnav Paniya** ([@arnavpaniya](https://github.com/arnavpaniya))
 - **Adarsh Gautam** ([@aadigauttam](https://github.com/aadigauttam))
+- **Utkarsh Jain** ([@Utkarshjain1217](https://github.com/Utkarshjain1217))
