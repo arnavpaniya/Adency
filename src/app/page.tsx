@@ -4,7 +4,11 @@ import Image from "next/image";
 import { useState, useCallback, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Portfolio from "../components/portfolio";
-import CameraShowcase from "../components/camera-showcase";
+import dynamic from "next/dynamic";
+const CameraShowcase = dynamic(() => import("../components/camera-showcase"), {
+  ssr: false,
+});
+
 import Testimonials from "../components/testimonials";
 import { Navbar } from "../components/navbar";
 import HeroNavbar from "../components/hero-navbar";

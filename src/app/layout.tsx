@@ -48,11 +48,6 @@ export default function RootLayout({
           <CustomCursor />
           {children}
         </Providers>
-        <Script
-          type="module"
-          src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"
-          strategy="afterInteractive"
-        />
       </body>
     </html>
   );
