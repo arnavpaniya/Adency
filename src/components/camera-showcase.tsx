@@ -85,7 +85,7 @@ export default function CameraShowcase() {
             alt="3D Professional Camera"
             auto-rotate
             camera-controls
-            bounds="tight"
+            {...{ bounds: "tight" } as any}
             camera-orbit="0deg 75deg 105%"
             shadow-intensity="2"
             shadow-softness="0.5"
