@@ -4,6 +4,8 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
+import { motion, AnimatePresence } from "framer-motion";
+import { X, Menu } from "lucide-react";
 
 type NavbarProps = {
   onOpenModal: () => void;
@@ -19,7 +21,6 @@ export function Navbar({ onOpenModal, variant = "default" }: NavbarProps) {
 
   const isHome = pathname === "/" || pathname === null || pathname === "";
   const shouldBeGlass = !isHome || scrolled;
-  const glassEffect = !isHome || scrolled;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -39,12 +40,19 @@ export function Navbar({ onOpenModal, variant = "default" }: NavbarProps) {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [lastScrollY, isMenuOpen]);
 
+  // Body scroll lock on mobile menu open
   useEffect(() => {
     if (isMenuOpen) {
       document.body.style.overflow = "hidden";
+      document.body.style.touchAction = "none";
     } else {
       document.body.style.overflow = "unset";
+      document.body.style.touchAction = "auto";
     }
+    return () => {
+      document.body.style.overflow = "unset";
+      document.body.style.touchAction = "auto";
+    };
   }, [isMenuOpen]);
 
   return (
@@ -56,7 +64,14 @@ export function Navbar({ onOpenModal, variant = "default" }: NavbarProps) {
       >
         <div className="w-full max-w-7xl px-7 flex justify-between items-center">
           <Link href="/" className="flex items-center gap-3 group" onClick={() => setIsMenuOpen(false)}>
-            <Image src="/assets/logo.png" alt="ADENCY" width={110} height={110} className="site-nav-logo-img drop-shadow-sm transition-all duration-300 group-hover:scale-105 h-auto w-auto max-h-24 object-contain" priority />
+            <Image 
+               src="/assets/logo.png" 
+               alt="ADENCY" 
+               width={110} 
+               height={110} 
+               className="site-nav-logo-img drop-shadow-sm transition-all duration-300 group-hover:scale-105 h-auto w-auto max-h-24 object-contain" 
+               priority 
+            />
           </Link>
 
           {/* Desktop Nav */}
@@ -95,41 +110,115 @@ export function Navbar({ onOpenModal, variant = "default" }: NavbarProps) {
 
           {/* Mobile Menu Toggle */}
           <button 
-            className={`md:hidden relative z-[120] w-10 h-10 flex flex-col items-center justify-center gap-1.5 transition-all ${isMenuOpen ? "rotate-90" : ""}`}
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            aria-label="Toggle Menu"
+            className="md:hidden relative z-[120] p-2 transition-all focus:outline-none"
+            onClick={() => setIsMenuOpen(true)}
+            aria-label="Open Menu"
           >
-            <span className={`w-6 h-0.5 transition-all ${shouldBeGlass || isMenuOpen ? "bg-[#1a1512]" : "bg-white"} ${isMenuOpen ? "rotate-45 translate-y-2" : ""}`} />
-            <span className={`w-6 h-0.5 transition-all ${shouldBeGlass || isMenuOpen ? "bg-[#1a1512]" : "bg-white"} ${isMenuOpen ? "opacity-0" : ""}`} />
-            <span className={`w-6 h-0.5 transition-all ${shouldBeGlass || isMenuOpen ? "bg-[#1a1512]" : "bg-white"} ${isMenuOpen ? "-rotate-45 -translate-y-2" : ""}`} />
+            <Menu className={shouldBeGlass ? "text-[#1a1512]" : "text-white"} size={32} />
           </button>
         </div>
       </header>
 
-      {/* Mobile Nav Overlay */}
-      <div className={`mobile-nav-overlay md:hidden ${isMenuOpen ? "mobile-nav-overlay--open" : ""}`}>
-        <Link 
-          href="/plans" 
-          className="mobile-nav-link"
-          onClick={() => setIsMenuOpen(false)}
-        >
-          Plans
-        </Link>
-        <a 
-          href="/#portfolio" 
-          className="mobile-nav-link"
-          onClick={() => setIsMenuOpen(false)}
-        >
-          Portfolio
-        </a>
-        <Link 
-          href="/plans"
-          className="mt-4 px-10 py-4 bg-[#f07020] text-white rounded-full font-black text-sm tracking-widest uppercase no-underline shadow-xl shadow-orange-500/30"
-          onClick={() => setIsMenuOpen(false)}
-        >
-          Start Project
-        </Link>
-      </div>
+      {/* Modern High-Fidelity Drawer */}
+      <AnimatePresence>
+        {isMenuOpen && (
+          <>
+            {/* Backdrop Overlay */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setIsMenuOpen(false)}
+              className="fixed inset-0 bg-[#0a0704]/85 backdrop-blur-md z-[1000] md:hidden cursor-pointer"
+            />
+
+            {/* Sidebar Drawer Implementation */}
+            <motion.div
+              initial={{ x: "-100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "-100%" }}
+              transition={{ type: "spring", damping: 30, stiffness: 300, mass: 0.8 }}
+              className="fixed top-0 left-0 bottom-0 w-[85%] max-w-[380px] bg-[#fdfaf6] z-[1010] shadow-2xl flex flex-col p-10 md:hidden"
+            >
+              {/* Drawer Header with Dedicated Close Button */}
+              <div className="flex justify-between items-center mb-16">
+                 <Link href="/" onClick={() => setIsMenuOpen(false)}>
+                   <Image 
+                    src="/assets/logo.png" 
+                    alt="ADENCY" 
+                    width={90} 
+                    height={90} 
+                    className="object-contain h-auto w-auto max-h-16" 
+                  />
+                 </Link>
+                 <button 
+                  onClick={() => setIsMenuOpen(false)}
+                  className="w-12 h-12 rounded-full bg-orange-50 flex items-center justify-center text-[#1a1512] hover:bg-orange-100 transition-all active:scale-90"
+                  aria-label="Close Menu"
+                >
+                  <X size={26} strokeWidth={2.5} />
+                </button>
+              </div>
+
+              {/* Navigation Sidebar Links */}
+              <div className="flex flex-col gap-10">
+                <motion.div 
+                   initial={{ opacity: 0, x: -30 }} 
+                   animate={{ opacity: 1, x: 0 }} 
+                   transition={{ delay: 0.1, duration: 0.4 }}
+                >
+                  <Link 
+                    href="/plans" 
+                    className="text-4xl text-[#1a1512] font-[900] uppercase tracking-tighter no-underline hover:text-orange-500 transition-colors"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    Plans
+                  </Link>
+                </motion.div>
+                
+                <motion.div 
+                   initial={{ opacity: 0, x: -30 }} 
+                   animate={{ opacity: 1, x: 0 }} 
+                   transition={{ delay: 0.2, duration: 0.4 }}
+                >
+                  <a 
+                    href="/#portfolio" 
+                    className="text-4xl text-[#1a1512] font-[900] uppercase tracking-tighter no-underline hover:text-orange-500 transition-colors"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    Portfolio
+                  </a>
+                </motion.div>
+
+                <motion.div 
+                   initial={{ opacity: 0, y: 30 }} 
+                   animate={{ opacity: 1, y: 0 }} 
+                   transition={{ delay: 0.3, duration: 0.4 }}
+                   className="mt-14"
+                >
+                  <Link 
+                    href="/plans"
+                    className="block w-full py-5 bg-[#f07020] text-white rounded-[24px] font-[900] text-sm tracking-[0.25em] uppercase text-center no-underline shadow-2xl shadow-orange-500/30 active:scale-95 transition-transform"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    Start Project
+                  </Link>
+                  <div className="mt-8 flex items-center justify-center gap-4 opacity-30">
+                    <div className="h-[1px] flex-1 bg-black" />
+                    <span className="text-[0.6rem] font-black tracking-[0.4em] uppercase">ADENCY</span>
+                    <div className="h-[1px] flex-1 bg-black" />
+                  </div>
+                </motion.div>
+              </div>
+
+              {/* Decorative Drawer Element */}
+              <div className="mt-auto opacity-[0.04] pointer-events-none -ml-12">
+                 <Image src="/assets/icons/icon10.png" alt="" width={250} height={250} className="-rotate-12" />
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
     </>
   );
 }

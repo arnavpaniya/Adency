@@ -42,7 +42,7 @@ Package: ${formData.plan} Plan
 Estimated Price: ₹${price}`;
 
     const encodedMessage = encodeURIComponent(message);
-    const waNumber = "918764756818"; // From existing footer
+    const waNumber = "919256459588"; // From existing footer
     
     window.open(`https://wa.me/${waNumber}?text=${encodedMessage}`, "_blank");
     onClose();

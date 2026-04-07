@@ -28,7 +28,7 @@ function OrderForm() {
     e.preventDefault();
     setIsSubmitting(true);
     
-    const whatsappNumber = "918764756818";
+    const whatsappNumber = "919256459588";
     const text = `*New Order Details for ADENCY*%0A%0A*Name:* ${formData.name}%0A*Brand:* ${formData.brandName}%0A*Plan:* ${formData.plan}%0A*Contact:* ${formData.phone} / ${formData.email}%0A*Requirements:* ${formData.message}%0A%0A_Sent from Adency Portal_`;
     
     setTimeout(() => {

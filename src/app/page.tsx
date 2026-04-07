@@ -18,6 +18,14 @@ import Link from "next/link";
 export default function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [showHeroNav, setShowHeroNav] = useState(true);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -30,7 +38,7 @@ export default function Home() {
   return (
     <>
       <AnimatePresence>
-        {!showHeroNav && (
+        {(!showHeroNav || isMobile) && (
           <Navbar key="site-nav" onOpenModal={() => setIsModalOpen(true)} />
         )}
       </AnimatePresence>
@@ -46,7 +54,7 @@ export default function Home() {
             <Image src="/assets/icons/icon2.png" alt="" width={500} height={500} />
           </div>
 
-          <div className="absolute top-10 left-10 z-[100]">
+          <div className="hidden md:block absolute top-10 left-10 z-[100]">
              <Link href="/" className="transition-all duration-300 hover:scale-105 active:scale-95">
                 <Image src="/assets/logo.png" alt="ADENCY" width={90} height={90} className="drop-shadow-xl" />
              </Link>
@@ -74,7 +82,7 @@ export default function Home() {
           {/* Dark Gradient Overlay for Premium Feel */}
           <div className="absolute inset-0 z-10 bg-gradient-to-b from-[#0a0704]/90 via-[#0a0704]/60 to-[#0a0704]/40" />
 
-          <div className="relative z-20 flex flex-col items-center text-center px-6 max-w-4xl mx-auto mt-16">
+          <div className="relative z-20 flex flex-col items-center text-center px-6 max-w-4xl mx-auto pt-24 md:pt-16">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}

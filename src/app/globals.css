@@ -364,50 +364,6 @@ a {
   color: var(--accent);
 }
 
-/* ── Mobile Nav Overlay ── */
-.mobile-nav-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(252, 250, 246, 0.98);
-  backdrop-filter: blur(20px);
-  z-index: 1000; /* Match site-nav or higher */
-  display: none;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 32px;
-  opacity: 0;
-  pointer-events: none;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  transform: translateY(-20px);
-}
-
-.mobile-nav-overlay--open {
-  display: flex;
-  opacity: 1;
-  pointer-events: auto;
-  transform: translateY(0);
-}
-
-.mobile-nav-link {
-  font-family: var(--font-brand), sans-serif;
-  font-size: 2.5rem;
-  color: var(--text-dark);
-  text-decoration: none;
-  letter-spacing: 0.1em;
-  transition: color 0.3s ease;
-}
-
-.mobile-nav-link:hover {
-  color: var(--accent);
-}
-
-@media (max-width: 768px) {
-  .site-nav-inner {
-    padding: 0 16px;
-  }
-}
-
 /* ── 5. HERO SECTION ─────────────────────────────────────── */
 .hero-banner {
   position: relative;

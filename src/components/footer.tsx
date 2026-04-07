@@ -19,7 +19,7 @@ export function Footer() {
               <span className="text-orange-500 font-bold block mt-2">Zero upfront cost. 100% Trust.</span>
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4 w-full">
-              <a href="https://wa.me/918764756818" target="_blank" className="footer-primary-cta text-center justify-center">
+              <a href="https://wa.me/919256459588" target="_blank" className="footer-primary-cta text-center justify-center">
                  <MessageSquare size={18} className="mr-2" /> Start on WhatsApp
               </a>
               <a href="https://www.instagram.com/grow_with_adency" target="_blank" className="footer-secondary-social group" aria-label="Instagram">
