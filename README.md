@@ -32,7 +32,7 @@ Unlike traditional agencies, ADENCY does not require upfront payment. Clients on
 
 Our project incorporates interactive 3D elements to create a cinematic, premium feel. You can explore the 3D retro camera model directly here on GitHub:
 
-👉 **[Interact with the 3D Camera Model](public/assets/camera3d.glb)**
+![Interactive 3D Camera Model](public/assets/camera3d.glb)
 
 
 ## 🛠 Tech Stack
@@ -81,4 +81,4 @@ The entire ADENCY platform is constructed on three key pillars:
 
 This entire project was designed and developed by:
 - **Arnav Paniya** ([@arnavpaniya](https://github.com/arnavpaniya))
-- **Adarsh Gautam**
+- **Adarsh Gautam** ([@aadigauttam](https://github.com/aadigauttam))
