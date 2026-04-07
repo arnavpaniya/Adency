@@ -81,7 +81,7 @@ export default function CameraShowcase() {
           {/* @ts-ignore */}
           <model-viewer
             ref={modelRef}
-            src="/assets/camera3d.glb"
+            src="https://res.cloudinary.com/dzmbj6q4j/image/upload/v1775586349/camera3d_kupl7b.glb"
             alt="3D Professional Camera"
             auto-rotate
             camera-controls
