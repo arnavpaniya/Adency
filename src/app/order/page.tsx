@@ -23,16 +23,37 @@ function OrderForm() {
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [emailError, setEmailError] = useState("");
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formData.email)) {
+      setEmailError("Please enter a valid email address");
+      return;
+    }
+
     setIsSubmitting(true);
     
     const whatsappNumber = "919256459588";
-    const text = `*New Order Details for ADENCY*%0A%0A*Name:* ${formData.name}%0A*Brand:* ${formData.brandName}%0A*Plan:* ${formData.plan}%0A*Contact:* ${formData.phone} / ${formData.email}%0A*Requirements:* ${formData.message}%0A%0A_Sent from Adency Portal_`;
+    const text = `*NEW ORDER INQUIRY*
+----------------------------------------
+*Client Information*
+Name: ${formData.name}
+Brand: ${formData.brandName}
+Contact: ${formData.phone} | ${formData.email}
+
+*Project Details*
+Plan Selected: ${formData.plan}
+
+*Requirements:*
+${formData.message}
+----------------------------------------
+_System: Adency Client Portal_`;
     
     setTimeout(() => {
-      window.open(`https://wa.me/${whatsappNumber}?text=${text}`, "_blank");
+      window.open(`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(text)}`, "_blank");
       setIsSubmitting(false);
     }, 800);
   };
@@ -109,10 +130,18 @@ function OrderForm() {
                 <input 
                   required
                   type="tel" 
-                  placeholder="+91 XXXXX XXXXX"
+                  placeholder="10-digit phone number"
+                  pattern="[0-9]{10}"
+                  maxLength={10}
+                  minLength={10}
+                  title="Please enter exactly 10 digits"
                   className="w-full bg-[#f3ebe066] border-none rounded-2xl p-5 text-sm font-bold text-[#1a1512] focus:ring-2 focus:ring-orange-500/20 transition-all outline-none"
                   value={formData.phone}
-                  onChange={(e) => setFormData({...formData, phone: e.target.value})}
+                  onChange={(e) => {
+                    // Filter to allow only numeric digits
+                    const val = e.target.value.replace(/\D/g, "");
+                    setFormData({...formData, phone: val});
+                  }}
                 />
               </div>
               <div className="space-y-2">
@@ -121,10 +150,20 @@ function OrderForm() {
                   required
                   type="email" 
                   placeholder="email@example.com"
-                  className="w-full bg-[#f3ebe066] border-none rounded-2xl p-5 text-sm font-bold text-[#1a1512] focus:ring-2 focus:ring-orange-500/20 transition-all outline-none"
+                  className={`w-full bg-[#f3ebe066] border-none rounded-2xl p-5 text-sm font-bold text-[#1a1512] focus:outline-none transition-all ${emailError ? "ring-2 ring-red-500/50" : "focus:ring-2 focus:ring-orange-500/20"}`}
                   value={formData.email}
-                  onChange={(e) => setFormData({...formData, email: e.target.value})}
+                  onChange={(e) => {
+                    setFormData({...formData, email: e.target.value});
+                    if (emailError) setEmailError("");
+                  }}
+                  onBlur={(e) => {
+                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    if (e.target.value && !emailRegex.test(e.target.value)) {
+                      setEmailError("Please enter a valid email address");
+                    }
+                  }}
                 />
+                {emailError && <p className="text-red-500 text-xs font-bold ml-2">{emailError}</p>}
               </div>
             </div>
 
