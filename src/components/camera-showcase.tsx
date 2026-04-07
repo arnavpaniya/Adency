@@ -16,18 +16,11 @@ export default function CameraShowcase() {
   const [loadError, setLoadError] = useState(false);
 
   useEffect(() => {
-    // 1. Client-side only import for <model-viewer> with duplicate registration check
-    if (typeof window !== "undefined" && !customElements.get("model-viewer")) {
-      import("@google/model-viewer").catch(err => {
-         console.error("Failed to load <model-viewer> engine:", err);
-      });
-    }
-
     const modelViewer = modelRef.current;
     if (modelViewer) {
       // 2. Set up event listeners for detailed diagnostics
       const handleLoad = () => {
-        console.log("3D Model successfully initialized from /assets/camera3d.glb");
+        console.log("✅ 3D Model successfully initialized from /assets/camera3d.glb");
         setIsLoaded(true);
         
         // Force opaque mode to fix material ghosting issues
@@ -40,7 +33,7 @@ export default function CameraShowcase() {
       };
 
       const handleError = (error: any) => {
-        console.error("3D Model Loading Failed:", error);
+        console.error("❌ 3D Model Loading Failed:", error);
         setLoadError(true);
       };
 
@@ -85,19 +78,22 @@ export default function CameraShowcase() {
           className="relative w-full h-[400px] md:h-[800px] cursor-grab active:cursor-grabbing"
         >
           {/* 3. <model-viewer> implementation with absolute path and diagnostics */}
+          {/* @ts-ignore */}
           <model-viewer
             ref={modelRef}
             src="/assets/camera3d.glb"
             alt="3D Professional Camera"
             auto-rotate
             camera-controls
+            bounds="tight"
+            camera-orbit="0deg 75deg 105%"
             shadow-intensity="2"
             shadow-softness="0.5"
             exposure="1"
             environment-image="neutral"
             interaction-prompt="none"
             loading="lazy"
-            style={{ width: '100%', height: '100%', outline: 'none' } as any}
+            style={{ width: '100%', height: '100%', outline: 'none', backgroundColor: 'transparent' } as any}
           >
             {/* Custom fallback loader */}
             {!isLoaded && !loadError && (
@@ -157,7 +153,21 @@ export default function CameraShowcase() {
 declare global {
   namespace JSX {
     interface IntrinsicElements {
-      'model-viewer': any;
+      'model-viewer': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement> & {
+        src?: string;
+        alt?: string;
+        'auto-rotate'?: boolean;
+        'camera-controls'?: boolean;
+        bounds?: string;
+        'camera-orbit'?: string;
+        'shadow-intensity'?: string;
+        'shadow-softness'?: string;
+        exposure?: string;
+        'environment-image'?: string;
+        'interaction-prompt'?: string;
+        loading?: string;
+        style?: React.CSSProperties;
+      };
     }
   }
 }

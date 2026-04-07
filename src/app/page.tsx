@@ -9,6 +9,7 @@ const CameraShowcase = dynamic(() => import("../components/camera-showcase"), {
   ssr: false,
 });
 
+
 import Testimonials from "../components/testimonials";
 import { Navbar } from "../components/navbar";
 import HeroNavbar from "../components/hero-navbar";
@@ -59,13 +60,13 @@ export default function Home() {
           </div>
 
           <div className="hidden md:block absolute top-10 left-10 z-[100]">
-             <Link href="/" className="transition-all duration-300 hover:scale-105 active:scale-95">
-                <Image src="/assets/logo.png" alt="ADENCY" width={90} height={90} className="drop-shadow-xl" />
-             </Link>
+            <Link href="/" className="transition-all duration-300 hover:scale-105 active:scale-95">
+              <Image src="/assets/logo.png" alt="ADENCY" width={90} height={90} className="drop-shadow-xl" />
+            </Link>
           </div>
 
           {/* Background Image with Zoom animation */}
-          <motion.div 
+          <motion.div
             initial={{ scale: 1.1 }}
             animate={{ scale: 1 }}
             transition={{ duration: 1.5, ease: "easeOut" }}
@@ -97,7 +98,7 @@ export default function Home() {
               <span className="text-orange-100 text-sm font-semibold tracking-wide uppercase">Starting from ₹2000</span>
             </motion.div>
 
-            <motion.h1 
+            <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.8 }}
@@ -106,7 +107,7 @@ export default function Home() {
               Professional Video Production for Your Brand.
             </motion.h1>
 
-            <motion.p 
+            <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4, duration: 0.8 }}
@@ -123,7 +124,7 @@ export default function Home() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5, duration: 0.8 }}
             >
-              <Link 
+              <Link
                 href="/plans"
                 className="bg-[#f5a623] hover:bg-[#e09510] text-white px-10 py-4 rounded-full font-bold text-lg shadow-2xl shadow-orange-500/40 transition-all hover:scale-105 active:scale-95 flex items-center gap-3 no-underline"
               >
@@ -136,14 +137,14 @@ export default function Home() {
         {/* ── USP Section ── */}
         <section className="bg-[#1a1512] py-8 border-y border-white/10 relative overflow-hidden">
           <div className="decorative-icon -left-20 top-1/2 -translate-y-1/2 opacity-20 scale-125">
-             <Image src="/assets/icons/icon10.png" alt="" width={300} height={300} />
+            <Image src="/assets/icons/icon10.png" alt="" width={300} height={300} />
           </div>
           <div className="decorative-icon -right-20 top-1/2 -translate-y-1/2 opacity-20 scale-125">
-             <Image src="/assets/icons/icon8.png" alt="" width={300} height={300} />
+            <Image src="/assets/icons/icon8.png" alt="" width={300} height={300} />
           </div>
 
           <div className="max-w-7xl mx-auto px-6 text-center relative z-10">
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
@@ -169,7 +170,7 @@ export default function Home() {
         {/* ── Testimonials ── */}
         <section className="relative overflow-hidden">
           <div className="decorative-icon top-[10%] -left-32 opacity-[0.12] scale-[1.8]">
-             <Image src="/assets/icons/icon7.png" alt="" width={400} height={400} />
+            <Image src="/assets/icons/icon7.png" alt="" width={400} height={400} />
           </div>
           <Testimonials />
         </section>
@@ -177,17 +178,17 @@ export default function Home() {
         {/* ── Final CTA Section ── */}
         <section className="py-24 px-6 bg-white relative overflow-hidden">
           <div className="decorative-icon -right-32 bottom-[10%] opacity-20 scale-[1.5]">
-             <Image src="/assets/icons/icon4.png" alt="" width={500} height={500} />
+            <Image src="/assets/icons/icon4.png" alt="" width={500} height={500} />
           </div>
           <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-orange-500/5 rounded-full blur-3xl opacity-50" />
-          
+
           <div className="max-w-4xl mx-auto text-center relative z-10 bg-[#fdfaf6] p-8 md:p-16 rounded-[40px] shadow-xl border border-orange-100/50">
             <h2 className="text-3xl md:text-5xl font-black text-[#1a1512] mb-6 tracking-tight leading-tight uppercase">Ready to get started?</h2>
             <p className="text-gray-500 mb-10 text-base md:text-lg md:text-xl font-medium max-w-xl mx-auto">
               Transform your brand presence with high-conversion video content. No upfront payment, zero risk.
             </p>
-            
-            <Link 
+
+            <Link
               href="/plans"
               className="inline-block bg-[#f07020] hover:bg-[#d45a10] text-white px-8 md:px-12 py-4 md:py-5 rounded-full font-black text-lg md:text-xl shadow-xl shadow-orange-500/30 transition-all hover:-translate-y-1 active:scale-95 no-underline"
             >

@@ -51,10 +51,15 @@ export function Footer() {
               <a href="mailto:info@growwithadency.com" className="flex items-center gap-3 text-sm font-bold text-[#1a151299] hover:text-orange-500 transition-colors">
                 <Mail size={16} /> info@growwithadency.com
               </a>
-              <div className="flex items-start gap-3 text-sm font-bold text-[#1a151299] leading-relaxed">
+              <a 
+                href="https://www.google.com/maps/search/?api=1&query=P-88,+2nd+floor,+Adency+office,+Silver+Birches,+Jaipur,+302015"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-start gap-3 text-sm font-bold text-[#1a151299] hover:text-orange-500 transition-colors leading-relaxed"
+              >
                 <MapPin size={16} className="mt-1 shrink-0" />
                 <span>P-88, 2nd floor, Adency office,<br/>Silver Birches, Jaipur, 302015</span>
-              </div>
+              </a>
             </div>
           </div>
         </div>
